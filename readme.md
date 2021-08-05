@@ -34,7 +34,7 @@ sys     0.00s
 mem     1 MB
 ```
 
-## Compiling with arguments
+## Compile with arguments
 
 ```bash
 # compile with parameters passed to gcc
