@@ -1,2 +1,2 @@
 AUTOMAKE_OPTIONS = foreign
-bin_SCRIPTS = scripts/*
+dist_bin_SCRIPTS = scripts/c scripts/ppc
