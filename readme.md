@@ -21,6 +21,7 @@ Can be run by using a single command:
 ```bash
 # basic usage: compile a program and run it
 c main.c
+# or, for C++ programs
 ppc main.cpp
 ```
 
