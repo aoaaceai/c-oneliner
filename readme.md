@@ -57,8 +57,8 @@ int main(int argc, char **argv) {
 The parameters can be passed to it by using:
 
 ```bash
-# arguments passed to the compiled program should be after the word `end`
-c main.c end FIRST second
+# arguments passed to the compiled program should be after the keyword `--params`
+c main.c --params FIRST second
 ```
 
 Result:
@@ -72,10 +72,10 @@ sys     0.00s
 mem     1 MB
 ```
 
-Arguments before `end` will be passed to the compiler, so the command
+Arguments before `--params` will be passed to the compiler, so the command
 
 ```bash
-c main.c -O2 -o test end FIRST second
+c main.c -O2 -o test --params FIRST second
 ```
 
 will compile `main.c` with optimization `O2`, output to `test`, then run it with arguments `FIRST` and `second`.
