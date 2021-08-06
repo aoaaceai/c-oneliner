@@ -1,5 +1,4 @@
 #!/bin/zsh
-#/bin/c
 params=()
 output="./a.out"
 while [[ $# -ne 0 ]]; do
@@ -10,6 +9,11 @@ while [[ $# -ne 0 ]]; do
 			output="$1"
 			;;
 		end)
+            print -P '%F{3}%BWarning:%b%f'" 'end'" "is deprecated, use '--end' instead"
+            shift
+            break
+            ;;
+        --end)
 			shift
 			break
 			;;
