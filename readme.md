@@ -21,6 +21,7 @@ Can be run by using a single command:
 ```bash
 # basic usage: compile a program and run it
 c main.c
+# or, for C++ programs
 ppc main.cpp
 ```
 
@@ -34,7 +35,7 @@ sys     0.00s
 mem     1 MB
 ```
 
-## Compiling with arguments
+## Compile with arguments
 
 ```bash
 # compile with parameters passed to gcc
