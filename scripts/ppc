@@ -1,6 +1,11 @@
 #!/bin/zsh
 params=()
 output="./a.out"
+TIMEFMT='total   %*E
+user    %U
+sys     %S
+mem     %M MB'
+NEEDTIME='HELLO'
 while [[ $# -ne 0 ]]; do
 	case $1 in
 		-o)
@@ -17,14 +22,19 @@ while [[ $# -ne 0 ]]; do
             shift
             break
             ;;
+        --notime)
+            unset NEEDTIME
+            shift
+            continue
+            ;;
 	esac
 	params+=("$1")
 	shift
 done
-TIMEFMT='total   %*E
-user    %U
-sys     %S
-mem     %M MB'
 if g++ "${params[@]}"; then
-	time "$(realpath "$output")" $@
+    if [ -z "$NEEDTIME" ]; then
+        "$(realpath "$output")" $@
+    else
+        time "$(realpath "$output")" $@
+    fi
 fi
