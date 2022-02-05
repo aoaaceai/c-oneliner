@@ -5,7 +5,6 @@ TIMEFMT='total   %*E
 user    %U
 sys     %S
 mem     %M MB'
-NEEDTIME='HELLO'
 while [[ $# -ne 0 ]]; do
 	case $1 in
 		-o)
@@ -13,17 +12,20 @@ while [[ $# -ne 0 ]]; do
 			shift
 			output="$1"
 			;;
-		end)
-            print -P '%F{3}%BWarning:%b%f'" 'end'" "is deprecated, use '--params' instead"
-			shift
-			break
-			;;
-        --params)
+        -)
+            STDIN='y'
+            ;;
+		end|--params)
+            print -P '%F{3}%BWarning:%b%f'" 'end' and '--params'" "are deprecated, use '--' instead"
             shift
             break
             ;;
+        --)
+			shift
+			break
+			;;
         --notime)
-            unset NEEDTIME
+            TIMEFMT=''
             shift
             continue
             ;;
@@ -31,10 +33,14 @@ while [[ $# -ne 0 ]]; do
 	params+=("$1")
 	shift
 done
-if g++ "${params[@]}"; then
-    if [ -z "$NEEDTIME" ]; then
-        "$(realpath "$output")" $@
+compile_program() {
+    if [ -z $STDIN ]; then
+        g++ "${params[@]}" || return 1
     else
-        time "$(realpath "$output")" $@
+        FILE="${params[2]}"
+        params[2]='-'
+        tail -n +2 < "$FILE" | g++ -x c++ "${params[@]}" || return 1
     fi
-fi
+}
+compile_program && time "$(realpath "$output")" $@
+
