@@ -1,4 +1,4 @@
-AC_INIT([c-oneliner], [0.0.4], [b09902010@csie.ntu.edu.tw])
+AC_INIT([c-oneliner], [0.0.5], [b09902010@csie.ntu.edu.tw])
 AM_INIT_AUTOMAKE
 AC_CONFIG_FILES([Makefile])
 AC_CHECK_PROG([HAS_ZSH], [zsh], [yes])
